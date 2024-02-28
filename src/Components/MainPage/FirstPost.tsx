@@ -1,8 +1,9 @@
 import style from './FirstPost.module.css'
 import { Link } from "react-router-dom";
 import Counter from "../Counter/Counter";
+import { Post as PostType } from '../../Types';
 
-const FirstPost = (props: any) => {
+const FirstPost = (props: PostType) => {
 
     return (
         <div className={style.post}>

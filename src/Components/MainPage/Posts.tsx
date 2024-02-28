@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { PostProps, PostType } from "../../Types";
+import { PostsProps, Post as PostType, Posts as PostsType } from "../../Types";
 import FirstPost from "./FirstPost";
 import Post from "./Post";
 import style from './Posts.module.css'
@@ -7,28 +7,25 @@ import { RootState } from "../../Redux/redux-store";
 
 
 
-const Posts = (props: PostProps) => {
+const Posts = (props: PostsProps) => {
 
     const firstPost = props.posts[0];
     const posts = props.posts.slice(1);
+
+    const renderPost = (posts : PostsType) => {
+        return posts.map((post: PostType) =>
+            <Post
+                id={post.id}
+                title={post.title}
+                body={post.body}
+                likeCount={post.likeCount}
+                dislikeCount={post.dislikeCount}
+                reaction={post.reaction} />)
+    }
+
     const columnFirst = posts.filter((post: PostType) => post.id % 2 == 0)
-        .map((post: PostType) => <Post
-            id={post.id}
-            title={post.title}
-            body={post.body}
-            likeCount={post.likeCount}
-            dislikeCount={post.dislikeCount}
-            reaction={post.reaction} />)
-
     const columnSecond = posts.filter((post: PostType) => post.id % 2 == 1)
-        .map((post: PostType) => <Post
-            id={post.id}
-            title={post.title}
-            body={post.body}
-            likeCount={post.likeCount}
-            dislikeCount={post.dislikeCount}
-            reaction={post.reaction} />)
-
+        
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {firstPost
@@ -43,11 +40,12 @@ const Posts = (props: PostProps) => {
             }
             <div className={style.postsGrid}>
                 <div style={{ gridArea: 'first' }}>
-                    {columnFirst}
+                    {renderPost(columnFirst)}
                 </div>
                 <div style={{ gridArea: 'second' }}>
-                    {columnSecond}
+                    {renderPost(columnSecond)}
                 </div>
+
             </div>
         </div>
     )

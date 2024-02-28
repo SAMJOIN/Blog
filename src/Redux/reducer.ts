@@ -1,21 +1,21 @@
 import { postAPI } from "../API/api"
-import { Dispatch } from 'redux';
-import { Action, PostProps, PostType, Reactions, State } from "../Types";
+import { Dispatch, UnknownAction } from 'redux';
+import { Action, Post, Posts, Reactions, InitialState, SetReaction } from "../Types";
 
 const SET_REACTION = 'SET-REACTION'
 const SET_POSTS = 'SET-POSTS'
 
 
-const initState: State = {
+const initState: InitialState = {
     posts: []
 }
 
-const reducer = (state: State = initState, action: Action): State => {
+const reducer = (state: InitialState = initState, action: Action): InitialState => {
     switch (action.type) {
         case SET_POSTS: {
             return {
                 ...state,
-                posts: action.posts.map((post: PostType) => {
+                posts: action.posts.map((post: Post) => {
                     return {
                         ...post,
                         likeCount: Math.floor(Math.random() * 51),
@@ -29,7 +29,7 @@ const reducer = (state: State = initState, action: Action): State => {
             debugger;
             return {
                 ...state,
-                posts: state.posts.map((post: PostType) => {
+                posts: state.posts.map((post: Post) => {
                     if (post.id === action.id) {
                         if (post.reaction === action.reaction && action.reaction !== Reactions.none) {
                             if (action.reaction === Reactions.like)
@@ -81,8 +81,7 @@ const reducer = (state: State = initState, action: Action): State => {
     }
 }
 
-
-export const setReaction = (id: number, reaction: Reactions): Action => {
+export const setReaction : SetReaction = (id, reaction) => {
     return {
         type: SET_REACTION,
         id,
@@ -90,7 +89,7 @@ export const setReaction = (id: number, reaction: Reactions): Action => {
     }
 }
 
-export const setPosts = (posts: PostProps): Action => {
+export const setPosts = (posts: Posts) => { 
     return {
         type: SET_POSTS,
         posts
@@ -104,9 +103,7 @@ export const getPosts = () => {
     }
 }
 
-
-
-export const filterPosts = (title: string) => {
+export const filterPosts = (title: string)  => {
     return (dispatch: Dispatch) => {
         postAPI.filterPosts(title)
             .then(response => { dispatch(setPosts(response)) })

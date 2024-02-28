@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { getPosts } from './Redux/reducer';
 import { connect } from 'react-redux';
@@ -6,8 +6,11 @@ import { RootState } from './Redux/redux-store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from './Components/MainPage/MainPage';
 import PostPage from './Components/PostPage/PostPage';
+import { AppProps } from './Types';
 
-function App(props: any) { //TODO типизировать
+
+
+const App = (props: AppProps) => { //TODO типизировать
 
   useEffect(() => {
     props.getPosts();

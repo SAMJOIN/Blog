@@ -1,9 +1,11 @@
-import { Reactions } from "../../Types";
+import { CounterProps, Reactions } from "../../Types";
 import style from './Counter.module.css'
 import { connect } from 'react-redux';
 import { setReaction } from "../../Redux/reducer";
 
-const Counter = (props: any) => {
+
+
+const Counter = (props : CounterProps) => {
 
     const like = () => {
         props.setReaction(props.id, Reactions.like);

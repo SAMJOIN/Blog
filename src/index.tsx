@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <App store={store} state={store.getState()}/>
+    <App store={store} posts={store.getState().posts} state={store.getState()}/>
   </Provider>
 );
 

@@ -1,9 +1,9 @@
 import style from './Post.module.css'
 import { Link } from 'react-router-dom';
 import Counter from '../Counter/Counter';
+import { Post as PostType } from '../../Types';
 
-const Post = (props: any) => {
-
+const Post = (props: PostType) => {
     return (
         <div className={style.post}>
             <img className={style.img} src="https://placehold.co/558x273" />

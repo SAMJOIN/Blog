@@ -3,9 +3,12 @@ import style from './MainPage.module.css'
 import { connect } from "react-redux";
 import { filterPosts } from "../../Redux/reducer";
 import { useRef } from "react";
+import { MainPageProps } from "../../Types";
 
 
-const MainPage = (props : any) => { // TODO Типизировать props
+
+
+const MainPage = (props : MainPageProps) => { 
 
     const inputRef = useRef<HTMLInputElement>(null);
 

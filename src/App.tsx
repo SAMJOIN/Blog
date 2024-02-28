@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
+import { getPosts } from './Redux/reducer';
+import { connect } from 'react-redux';
+import { RootState } from './Redux/redux-store';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import MainPage from './Components/MainPage/MainPage';
+import PostPage from './Components/PostPage/PostPage';
 
-function App() {
+function App(props: any) { //TODO типизировать
+
+  useEffect(() => {
+    props.getPosts();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<MainPage posts={props.posts}/>}/>
+        <Route path='/:postID' element={<PostPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = (state: RootState): object => ({ // TODO Посмотреть как делать через хуки
+  posts: state.posts
+})
+
+export default connect(mapStateToProps, { getPosts })(App);

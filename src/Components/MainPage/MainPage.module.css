@@ -1,0 +1,77 @@
+.App {
+  margin: auto;
+  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
+  align-items: center;
+  padding: 0 130px 0 130px;
+  font-family: Roboto;
+}
+
+.textContent {
+  margin-top: 64px;
+  width: 1140px;
+  height: 156px;
+}
+
+.textContent h1 {
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
+  font-size: 60px;
+  height: 68px;
+}
+
+.textContent p {
+  margin: 24px 0 0 0;
+  text-align: justify;
+  font-weight: 400;
+  font-size: 24px;
+  height: 64px;
+}
+
+.svgIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.svgIcon path,
+.svgIcon polygon,
+.svgIcon rect {
+  fill: #000000;
+}
+
+.svgIcon circle {
+  stroke: #000000;
+  stroke-width: 1;
+}
+
+.searchField {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 32px 0 0 0;
+  padding: 8px 14px 8px 14px;
+  height: 48px;
+  width: 1140px;
+  border: 1px solid rgba(145, 158, 171, 0.32);
+  border-radius: 6px;
+  text-align: start;
+}
+
+.searchField input {
+  margin: 0 0 0 8px;
+  font-weight: 400;
+  color: black;
+  font-size: 16px;
+  font-family: Roboto;
+  width: inherit;
+  border: none;
+}
+
+.searchField input:focus {
+  outline: 0;
+  outline-offset: 0;
+}

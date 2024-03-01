@@ -15,6 +15,7 @@ const Posts = (props: PostsProps) => {
     const renderPost = (posts : PostsType) => {
         return posts.map((post: PostType) =>
             <Post
+                key={post.id}
                 id={post.id}
                 title={post.title}
                 body={post.body}
